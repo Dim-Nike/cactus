@@ -1621,8 +1621,8 @@ textarea:focus {
 .main-menu nav>ul>li>ul.mega-menu>li {
     display: inline-block;
     float: left;
-    padding-left: 30px;
-    width: 25%;
+    padding-left: 10px;
+    width: 15%;
 }
 .main-menu ul li ul>li.mega-menu-title {
     color: #333333;
