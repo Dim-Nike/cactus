@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-5">
                             <div class="logo pt-39">
-                                <a href="index.html"><img alt="" src="{% static 'main/img/logo/logo.png' %}" ></a>
+                                <a href="{% url 'landing' %}"><img alt="" src="{% static 'main/img/logo/logo.png' %}" ></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7 d-none d-lg-block">
@@ -72,10 +72,10 @@
                                         <li><a href="index.html">HOME</a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="index.html">home version 1</a>
+                                                    <a href="{% url 'landing' %}">home version 1</a>
                                                 </li>
                                                 <li>
-                                                    <a href="index-2.html">home version 2</a>
+                                                    <a href="{% url 'landing' %}">home version 2</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -204,7 +204,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food </a></h4>
                                                     <h6>Qty: 02</h6>
-                                                    <span>$260.00</span>
+                                                    <span>260.00 ₽</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ti-close"></i></a>
@@ -217,7 +217,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food</a></h4>
                                                     <h6>Qty: 02</h6>
-                                                    <span>$260.00</span>
+                                                    <span>260.00 ₽</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ti-close"></i></a>
@@ -225,8 +225,8 @@
                                             </li>
                                         </ul>
                                         <div class="shopping-cart-total">
-                                            <h4>Shipping : <span>$20.00</span></h4>
-                                            <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                            <h4>Shipping : <span>20.00 ₽</span></h4>
+                                            <h4>Total : <span class="shop-total">260.00 ₽</span></h4>
                                         </div>
                                         <div class="shopping-cart-btn">
                                             <a href="cart.html">view cart</a>
@@ -242,8 +242,8 @@
                                     <ul class="menu-overflow">
                                         <li><a href="#">HOME</a>
                                             <ul>
-                                                <li><a href="#">home version 1</a></li>
-                                                <li><a href="#">home version 2</a></li>
+                                                <li><a href="{% url 'landing' %}">home version 1</a></li>
+                                                <li><a href="{% url 'landing' %}">home version 2</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">pages</a>
@@ -417,7 +417,7 @@
                                                                 <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                                                     <i class="ti-plus"></i>
                                                                 </a>
-                                                                <a title="Add To Cart" href="#">
+                                                                <a title="Add To Cart" href="{% url 'product' product.id %}">
                                                                     <i class="ti-shopping-cart"></i>
                                                                 </a>
                                                             </div>
@@ -432,10 +432,10 @@
                                                             <h4><a href="product-details.html">{{ product.name }}</a></h4>
                                                             <div class="product-price">
                                                                 {% if product.old_price != 0 %}
-                                                                    <span class="new">${{ product.price }} </span>
-                                                                    <span class="old">${{ product.old_price }}</span>
+                                                                    <span class="new">{{ product.price }} ₽</span>
+                                                                    <span class="old">{{ product.old_price }} ₽</span>
                                                                 {% else %}
-                                                                    <span class="new">${{ product.price }} </span>
+                                                                    <span class="new">{{ product.price }} ₽</span>
                                                                 {% endif %}
                                                             </div>
                                                         </div>
@@ -443,16 +443,16 @@
                                                             <h4><a href="#">{{ product.name }}</a></h4>
                                                             <div class="product-price">
                                                                 {% if product.old_price != 0 %}
-                                                                    <span class="new">${{ product.price }} </span>
-                                                                    <span class="old">${{ product.old_price }}</span>
+                                                                    <span class="new">{{ product.price }} ₽</span>
+                                                                    <span class="old">{{ product.old_price }} ₽</span>
                                                                 {% else %}
-                                                                    <span class="new">${{ product.price }} </span>
+                                                                    <span class="new">{{ product.price }} ₽</span>
                                                                 {% endif %}
                                                             </div>
                                                             <p>{{ product.description }}</p>
                                                             <div class="product-list-action">
                                                                 <div class="product-list-action-left">
-                                                                    <a class="addtocart-btn" title="Add to cart" href="{% url 'product' product.id %}"><i class="ion-bag"></i> Add to cart</a>
+                                                                    <a class="addtocart-btn" title="Add to cart" href="{% url 'product' product.id %}"><i class="ion-bag"></i>Подробнее</a>
                                                                 </div>
                                                                 <div class="product-list-action-right">
                                                                     <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
@@ -676,7 +676,7 @@
                             <div class="qwick-view-content">
                                 <h3>Dog Calcium Food</h3>
                                 <div class="product-price">
-                                    <span>$19.00 </span>
+                                    <span>19.00 ₽</span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="ion-star theme-color"></i>

@@ -31,7 +31,7 @@
                         <div class="col-lg-8 col-md-8 col-12">
                             <div class="account-curr-lang-wrap f-right">
                                 <ul>
-                                    <li class="top-hover"><a href="#">$Doller (US) <i class="icon-arrow-down"></i></a>
+                                    <li class="top-hover"><a href="#">₽Doller (US) <i class="icon-arrow-down"></i></a>
                                         <ul>
                                             <li><a href="#">Taka (BDT)</a></li>
                                             <li><a href="#">Riyal (SAR)</a></li>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-5">
                             <div class="logo pt-39">
-                                <a href="index.html"><img alt="" src="{% static 'main/img/logo/logo.png' %}"></a>
+                                <a href="{% url 'landing' %}"><img alt="" src="{% static 'main/img/logo/logo.png' %}"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7 d-none d-lg-block">
@@ -200,7 +200,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food </a></h4>
                                                     <h6>Qty: 02</h6>
-                                                    <span>$260.00</span>
+                                                    <span>₽260.00</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ti-close"></i></a>
@@ -213,7 +213,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food</a></h4>
                                                     <h6>Qty: 02</h6>
-                                                    <span>$260.00</span>
+                                                    <span>260.00 ₽</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ti-close"></i></a>
@@ -221,8 +221,8 @@
                                             </li>
                                         </ul>
                                         <div class="shopping-cart-total">
-                                            <h4>Shipping : <span>$20.00</span></h4>
-                                            <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                            <h4>Shipping : <span>20.00 ₽</span></h4>
+                                            <h4>Total : <span class="shop-total">260.00 ₽</span></h4>
                                         </div>
                                         <div class="shopping-cart-btn">
                                             <a href="cart.html">view cart</a>
@@ -238,8 +238,8 @@
                                     <ul class="menu-overflow">
                                         <li><a href="#">HOME</a>
                                             <ul>
-                                                <li><a href="index.html">home version 1</a></li>
-                                                <li><a href="index-2.html">home version 2</a></li>
+                                                <li><a href="{% url 'landing' %}">home version 1</a></li>
+                                                <li><a href="{% url 'landing' %}">home version 2</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">pages</a>
@@ -338,9 +338,7 @@
                                 <div class="slider-content slider-animated-1 pt-114">
                                     <h3 class="animated">Мы выращиваем кактусы для удовольствия.</h3>
                                     <h1 class="animated">Кактусы & Семена <br>Все для вашего дома</h1>
-                                    <div class="slider-btn">
-                                        <a class="animated" href="product-details.html">SHOP NOW</a>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 col-sm-5">
@@ -358,9 +356,7 @@
                                 <div class="slider-content slider-animated-1 pt-114">
                                     <h3 class="animated">We grow cacti for fun.</h3>
                                     <h1 class="animated">Cacti & Seeds <br>Everything for home</h1>
-                                    <div class="slider-btn">
-                                        <a class="animated" href="product-details.html">SHOP NOW</a>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-5 col-12">
@@ -395,8 +391,8 @@
         <div class="product-area pt-95 pb-70 gray-bg">
             <div class="container">
                 <div class="section-title text-center mb-55">
-                    <h4>Most Populer</h4>
-                    <h2>Recent Products</h2>
+                    <h4>Лучшая продукция</h4>
+                    <h2>Популярные товары</h2>
                 </div>
                 <div class="row">
                     {% for product in products %}
@@ -411,7 +407,7 @@
                                             <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                                 <i class="ti-plus"></i>
                                             </a>
-                                            <a title="Add To Cart" href="#">
+                                            <a title="Add To Cart" href="{% url 'product' product.id %}">
                                                 <i class="ti-shopping-cart"></i>
                                             </a>
                                         </div>
@@ -425,10 +421,10 @@
                                         <h4><a href="product-details.html">{{ product.name }}</a></h4>
                                         <div class="product-price">
                                             {% if product.old_price != 0 %}
-                                                <span class="new">${{ product.price }}</span>
-                                                <span class="old">${{ product.old_price }}</span>
+                                                <span class="new">{{ product.price }} ₽</span>
+                                                <span class="old">{{ product.old_price }} ₽</span>
                                             {% else %}
-                                                <span class="new">${{ product.price }} </span>
+                                                <span class="new">{{ product.price }} ₽</span>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -440,8 +436,8 @@
         <div class="deal-area bg-img pt-95 pb-100">
             <div class="container">
                 <div class="section-title text-center mb-50">
-                    <h4>Best Product</h4>
-                    <h2>Deal of the Week</h2>
+                    <h4>Лучшие продукты</h4>
+                    <h2>Продукт недели</h2>
                 </div>
                 {% for product in products %}
                     {% if product.product_of_the_day == True %}
@@ -455,15 +451,15 @@
                                 <div class="deal-content">
                                     <h3><a href="#">{{ product.name }}</a></h3>
                                     <div class="deal-pro-price">
-                                        <span class="deal-old-price">${{ product.old_price }} </span>
-                                        <span> ${{ product.price }}</span>
+                                        <span class="deal-old-price">{{ product.old_price }} ₽</span>
+                                        <span> {{ product.price }} ₽</span>
                                     </div>
                                     <p>{{ product.description }}</p>
                                     <div class="timer timer-style">
                                         <div data-countdown="2017/10/01"></div>
                                     </div>
                                     <div class="discount-btn mt-35">
-                                        <a class="btn-style" href="#">SHOP NOW</a>
+                                        <a class="btn-style" href="{% url 'product' product.id %}">Купить сейчас</a>
                                     </div>
                                 </div>
                             </div>
@@ -473,38 +469,38 @@
             </div>
         </div>
 
-		<div class="service-area bg-img pt-100 pb-65">
-		    <div class="container">
-		        <div class="row">
-		            <div class="col-lg-4 col-md-4">
-		                <div class="service-content text-center mb-30 service-color-1">
-		                    <img src="{% static 'main/img/icon-img/shipping.png' %}" alt="">
-		                    <h4>FREE SHIPPING</h4>
-		                    <p>Free shipping on all order </p>
-		                </div>
-		            </div>
-		            <div class="col-lg-4 col-md-4">
-		                <div class="service-content text-center mb-30 service-color-2">
-		                    <img src="{% static 'main/img/icon-img/support.png' %}" alt="">
-		                    <h4>ONLINE SUPPORT</h4>
-		                    <p>Online support 24 hours a day</p>
-		                </div>
-		            </div>
-		            <div class="col-lg-4 col-md-4">
-		                <div class="service-content text-center mb-30 service-color-3">
-		                    <img src="{% static 'main/img/icon-img/money.png' %}" alt="">
-		                    <h4>MONEY RETURN</h4>
-		                    <p>Back guarantee under 5 days</p>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		</div>
+<!--		<div class="service-area bg-img pt-100 pb-65">-->
+<!--		    <div class="container">-->
+<!--		        <div class="row">-->
+<!--		            <div class="col-lg-4 col-md-4">-->
+<!--		                <div class="service-content text-center mb-30 service-color-1">-->
+<!--		                    <img src="{% static 'main/img/icon-img/shipping.png' %}" alt="">-->
+<!--		                    <h4>FREE SHIPPING</h4>-->
+<!--		                    <p>Free shipping on all order </p>-->
+<!--		                </div>-->
+<!--		            </div>-->
+<!--		            <div class="col-lg-4 col-md-4">-->
+<!--		                <div class="service-content text-center mb-30 service-color-2">-->
+<!--		                    <img src="{% static 'main/img/icon-img/support.png' %}" alt="">-->
+<!--		                    <h4>ONLINE SUPPORT</h4>-->
+<!--		                    <p>Online support 24 hours a day</p>-->
+<!--		                </div>-->
+<!--		            </div>-->
+<!--		            <div class="col-lg-4 col-md-4">-->
+<!--		                <div class="service-content text-center mb-30 service-color-3">-->
+<!--		                    <img src="{% static 'main/img/icon-img/money.png' %}" alt="">-->
+<!--		                    <h4>MONEY RETURN</h4>-->
+<!--		                    <p>Back guarantee under 5 days</p>-->
+<!--		                </div>-->
+<!--		            </div>-->
+<!--		        </div>-->
+<!--		    </div>-->
+<!--		</div>-->
 		<div class="blog-area pb-70">
 		    <div class="container">
 		        <div class="section-title text-center mb-60">
-                    <h4>Latest News</h4>
-                    <h2>From Our Blog</h2>
+                    <h4>Узнай о последних событий</h4>
+                    <h2>Наш блог</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
@@ -686,8 +682,8 @@
                             <div class="qwick-view-content">
                                 <h3>Dog Calcium Food</h3>
                                 <div class="product-price">
-                                    <span class="new">$20.00 </span>
-                                    <span class="old">$50.00</span>
+                                    <span class="new">20.00 ₽</span>
+                                    <span class="old">50.00 ₽</span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="icon-star theme-color"></i>
