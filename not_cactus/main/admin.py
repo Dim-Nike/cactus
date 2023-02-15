@@ -12,5 +12,16 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ['name', 'create', 'is_active']
+
+
+class CategoriesBlogAdmin(admin.ModelAdmin):
+    list_display = ['name', 'create']
+
+
+
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Blog, BlogAdmin)
+admin.site.register(CategoriesBlog, CategoriesBlogAdmin)

@@ -29,3 +29,26 @@ class Product(models.Model):
     is_active = models.BooleanField(verbose_name='Опубликовано')
     popular = models.BooleanField(verbose_name='Отображение на главной странице(может быть кратное 4)', default=False)
     product_of_the_day = models.BooleanField(verbose_name='Товар дня(может быть только один)', default=False)
+
+
+class Blog(models.Model):
+    class Meta:
+        verbose_name = 'Влог'
+        verbose_name_plural = 'Влоги'
+
+    name = models.CharField(verbose_name='Название темы', max_length=155)
+    image = models.ImageField(verbose_name='Фотография', upload_to='photo/blog/%Y/%m/%d/')
+    description = models.CharField(verbose_name='Подзаголовок(300 символов)', max_length=300)
+    full_text = models.TextField(verbose_name='Текст влога')
+    is_active = models.BooleanField(verbose_name='Опубликовано')
+    create = models.DateTimeField(verbose_name='Время создания', auto_now_add=True)
+
+
+class CategoriesBlog(models.Model):
+    class Meta:
+        verbose_name = 'Категория влога'
+        verbose_name_plural = 'Категории влогов'
+
+    name = models.CharField(verbose_name='Наименование', max_length=155)
+    image = models.ImageField(verbose_name='Фотография', upload_to='photo/CategoriesBlog/%Y/%m/%d/')
+    create = models.DateTimeField(verbose_name='Время создания', auto_now_add=True)

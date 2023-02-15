@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-5">
                             <div class="logo pt-39">
-                                <a href="{% url 'landing' %}"><img alt="" src="{% static 'main/img/logo/logo.png' %}"></a>
+                                <a href="{% url 'landing' %}"><img alt="" src="{% static 'main/img/logo/cactus_logo_v2.png' %}"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7 d-none d-lg-block">
@@ -482,54 +482,56 @@
                     <h2>Наш блог</h2>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-1.jpg' %}"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
+                    {% for blog in blogs %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="blog-wrapper mb-30 gray-bg">
+                                <div class="blog-img hover-effect">
+                                    <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-1.jpg' %}"></a>
                                 </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <ul>
+                                            <li>By: <span>Admin</span></li>
+                                            <li>{{ blog.create }}</li>
+                                        </ul>
+                                    </div>
+                                    <h4><a href="blog-details.html">{{ blog.name }}</a></h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-2.jpg' %}"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-3.jpg' %}"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+<!--                    <div class="col-lg-4 col-md-6">-->
+<!--                        <div class="blog-wrapper mb-30 gray-bg">-->
+<!--                            <div class="blog-img hover-effect">-->
+<!--                                <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-2.jpg' %}"></a>-->
+<!--                            </div>-->
+<!--                            <div class="blog-content">-->
+<!--                                <div class="blog-meta">-->
+<!--                                    <ul>-->
+<!--                                        <li>By: <span>Admin</span></li>-->
+<!--                                        <li>Sep 14, 2018</li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-4 col-md-6">-->
+<!--                        <div class="blog-wrapper mb-30 gray-bg">-->
+<!--                            <div class="blog-img hover-effect">-->
+<!--                                <a href="blog-details.html"><img alt="" src="{% static 'main/img/blog/blog-3.jpg' %}"></a>-->
+<!--                            </div>-->
+<!--                            <div class="blog-content">-->
+<!--                                <div class="blog-meta">-->
+<!--                                    <ul>-->
+<!--                                        <li>By: <span>Admin</span></li>-->
+<!--                                        <li>Sep 14, 2018</li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
 		    </div>
 		</div>
