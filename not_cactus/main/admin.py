@@ -17,7 +17,7 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 class CategoriesBlogAdmin(admin.ModelAdmin):
-    list_display = ['name', 'create']
+    list_display = ['name']
 
 
 

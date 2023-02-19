@@ -8,8 +8,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'main/img/favicon.png' %}">
+		
 		<!-- all css here -->
         <link rel="stylesheet" href='{% static "main/css/style.css" %}' type="text/css" />
         <link rel="stylesheet" href="{% static 'main/css/jquery-ui.css' %}">
@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="{% static 'main/css/simple-line-icons.css' %}">
         <link rel="stylesheet" href="{% static 'main/css/slick.css' %}">
         <link rel="stylesheet" href="{% static 'main/css/themify-icons.css' %}">
+        <script src="{% static 'main/js/vendor/modernizr-2.8.3.min.js' %}"></script>
         <script src="{% static 'main/js/vendor/modernizr-2.8.3.min.js' %}"></script>
     </head>
     <body>
@@ -142,234 +143,83 @@
                 </div>
             </div>
         </header>
-        <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url(assets/img/banner/banner-2.jpg);">
+        <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url({% static 'main/img/banner/baner_list_blog.png' %});">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h2>Product Details</h2>
+                    <h2>Blog Left sidebar</h2>
                     <ul>
                         <li><a href="index.html">home</a></li>
-                        <li class="active">Product Details</li>
+                        <li class="active">Blog Left sidebar</li>
                     </ul>
                 </div>
             </div>
         </div>
-        {% for product in products %}
-             <div class="shop-area pt-95 pb-100">
-               <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="product-details-img">
-                            <img id="zoompro" src="{{ product.photo.url }}" data-zoom-image="{{ product.photo.url }}" alt="zoom"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="product-details-content">
-                            <h2>{{ product.name }}</h2>
-                            <div class="product-rating">
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star"></i>
-                                <i class="ti-star"></i>
-                                <span> ( 01 Customer Review )</span>
-                            </div>
-                            <div class="product-price">
-                                {% if product.old_price != 0 %}
-                                    <span class="new">{{ product.price }} ₽</span>
-                                    <span class="old">{{ product.old_price }} ₽</span>
-                                {% else %}
-                                    <span class="new">{{ product.price }} ₽</span>
-                                {% endif %}
-                            </div>
-                            <div class="in-stock">
-                                <span><i class="ion-android-checkbox-outline"></i>Идентификационный номер </span>
-                            </div>
-                            <div class="sku">
-                                <span>HknWgh7h9n</span>
-                            </div>
-                            <div class="in-stock">
-
-                                <span><i class="ion-android-checkbox-outline">Номер телефона: </i> 89508578433</br></span>
-                            </div>
-                            <div class="in-stock">
-                                <span><i class="ion-android-checkbox-outline">Почта: </i> Somethink@mail.ru</br></span>
-                            </div>
-
-                            <p>{{ product.description }}</p>
-
-
-<!--                            <div class="social-icon mt-30">-->
-<!--                                <ul>-->
-<!--                                    <li><a href="#"><i class="icon-social-twitter"></i></a></li>-->
-<!--                                    <li><a href="#"><i class="icon-social-instagram"></i></a></li>-->
-<!--                                    <li><a href="#"><i class="icon-social-linkedin"></i></a></li>-->
-<!--                                    <li><a href="#"><i class="icon-social-skype"></i></a></li>-->
-<!--                                    <li><a href="#"><i class="icon-social-dribbble"></i></a></li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="description-review-area pb-100">
+        <div class="shop-area pt-100 pb-100">
             <div class="container">
-                <div class="description-review-wrapper gray-bg pt-40">
-                    <div class="description-review-topbar nav text-center">
-                        <a class="active" data-toggle="tab" href="#des-details1">Описание</a>
-                        <a data-toggle="tab" href="#des-details2">Больше информации</a>
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-9 col-md-8">
+                        <div class="row">
+                            {% for category in categories %}
+                                {% for blog in blogs %}
+                                    {% if category.name == blog.categories.name %}
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="blog-wrapper mb-30 gray-bg">
+                                                <div class="blog-img hover-effect">
+                                                    <a href="blog-details.html"><img alt="" src="{{ blog.image.url }}"></a>
+                                                </div>
+                                                <div class="blog-content">
+                                                    <div class="blog-meta">
+                                                        <ul>
+                                                            <li>By: <span>Admin</span></li>
+                                                            <li>{{ blog.create }}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4><a href="{% url 'blog' blog.pk %}">{{ blog.name }}</a></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+
                     </div>
-                    <div class="tab-content description-review-bottom">
-                        <div id="des-details1" class="tab-pane active">
-                            <div class="product-description-wrapper">
-                                <p>{{ product.full_text }}</p>
-                            </div>
-                        </div>
-                        <div id="des-details2" class="tab-pane">
-                            <div class="product-anotherinfo-wrapper">
-                                <ul>
-                                    <li><span>Название</span> {{ product.name }}</li>
-                                    <li><span>Остаток</span> {{ product.count_product }}</li>
-                                    <li><span>Категория</span> {{ product.categories }}</li>
-                                    <li><span>Стоимость</span> {{ product.price }}₽</li>
-                                    <li><span>Телефон</span> 89505673439 </li>
-                                    <li><span>Почта</span> somethink@mail.ru </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="des-details3" class="tab-pane">
-                            <div class="rattings-wrapper">
-                                <div class="sin-rattings">
-                                    <div class="star-author-all">
-                                        <div class="product-rating f-left">
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <span>(5)</span>
-                                        </div>
-                                        <div class="ratting-author f-right">
-                                            <h3>tayeb rayed</h3>
-                                            <span>12:24</span>
-                                            <span>9 March 2018</span>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
-                                </div>
-                                <div class="sin-rattings">
-                                    <div class="star-author-all">
-                                        <div class="product-rating f-left">
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star"></i>
-                                            <span>(4)</span>
-                                        </div>
-                                        <div class="ratting-author f-right">
-                                            <h3>farhana shuvo</h3>
-                                            <span>12:24</span>
-                                            <span>9 March 2018</span>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
-                                </div>
-                            </div>
-                            <div class="ratting-form-wrapper">
-                                <h3>Add your Comments :</h3>
-                                <div class="ratting-form">
-                                    <form action="#">
-                                        <div class="star-box">
-                                            <h2>Rating:</h2>
-                                                <div class="product-rating">
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star"></i>
-                                                <i class="ti-star"></i>
-                                                <span>(3)</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <input placeholder="Name" type="text">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="shop-sidebar blog-mrg">
+                            <div class="shop-widget mt-50">
+                                <h4 class="shop-sidebar-title">Популярные влоги</h4>
+                                <div class="recent-post-wrapper mt-25">
+                                    {% for blog in popular_blog %}
+                                        {% if blog.popular == True %}
+                                            <div class="single-recent-post mb-20">
+                                                <div class="recent-post-img">
+                                                    <a href="{% url 'blog' blog.pk %}"><img src="{{ blog.image.url }}" alt=""></a>
+                                                </div>
+                                                <div class="recent-post-content">
+                                                    <h4><a href="{% url 'blog' blog.pk %}">{{ blog.name }}</a></h4>
+                                                    <span>{{ blog.create }}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <input placeholder="Email" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="rating-form-style form-submit">
-                                                    <textarea name="message" placeholder="Message"></textarea>
-                                                    <input type="submit" value="add review">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-        <div class="related-product-area pt-95 pb-80 gray-bg">
-            <div class="container">
-                <div class="section-title text-center mb-55">
-                    <h4>У нас есть еще</h4>
-                    <h2>Популярные продукты</h2>
-                </div>
-                <div class="related-product-active owl-carousel">
-                    {% for product in popular_product %}
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a>
-                                <img src="{{ product.photo.url }}" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a title="Add To Cart" href="{% url 'product' product.pk %}">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                            <div class="product-action-wishlist">
-                                <a title="Wishlist" href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="{% url 'product' product.pk %}">{{ product.name }}</a></h4>
-                            <div class="product-price">
-                                {% if product.old_price != 0 %}
-                                    <span class="new">{{ product.price }} ₽</span>
-                                    <span class="old">{{ product.old_price }} ₽</span>
-                                {% else %}
-                                    <span class="new">{{ product.price }} ₽</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
 		<footer class="footer-area">
-            <div class="footer-top pt-80 pb-50">
+            <div class="footer-top pt-80 pb-50 gray-bg-2">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <div class="footer-widget mb-30">
                                 <div class="footer-info-wrapper">
                                     <div class="footer-logo">
-                                            <a href="{% url 'landing' %}">
-                                                <img alt="" src="{% static 'main/img/logo/cactus_logo_v2.png' %}">
-                                            </a>
+                                        <a href="{% url 'landing' %}">
+                                            <img alt="" src="{% static 'main/img/logo/cactus_logo_v2.png' %}">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -412,14 +262,12 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom gray-bg-3 pt-17 pb-15">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <div class="border-top-1 pt-17 pb-15">
-                                <div class="copyright text-center">
-                                    <p>Copyright © <a href="#">Marten.</a> All Right Reserved.</p>
-                                </div>
+                            <div class="copyright text-center">
+                                <p>Copyright © <a href="#">Marten.</a> All Right Reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -438,22 +286,22 @@
                             <div class="quick-view-learg-img">
                                 <div class="quick-view-tab-content tab-content">
                                     <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                        <img src="{% static 'main/img/quick-view/l1.jpg' %}" alt="">
+                                        <img src="{% static 'main/img/quick-view/l1.jpg' %}{% static 'main" alt="">
                                     </div>
                                     <div class="tab-pane fade" id="modal2" role="tabpanel">
-                                        <img src="{% static 'main/img/quick-view/l2.jpg' %}" alt="">
+                                        <img src="{% static 'main/img/quick-view/l2.jpg' %}{% static 'main" alt="">
                                     </div>
                                     <div class="tab-pane fade" id="modal3" role="tabpanel">
-                                        <img src="{% static 'main/img/quick-view/l3.jpg' %}" alt="">
+                                        <img src="{% static 'main/img/quick-view/l3.jpg' %}{% static 'main" alt="">
                                     </div>
                                 </div>
                             </div>
                             <div class="quick-view-list nav" role="tablist">
                                 <a class="active" href="#modal1" data-toggle="tab" role="tab">
-                                    <img src="{% static 'main/img/quick-view/s1.jpg' %}" alt="">
+                                    <img src="{% static 'main/img/quick-view/s1.jpg' %}{% static 'main" alt="">
                                 </a>
                                 <a href="#modal2" data-toggle="tab" role="tab">
-                                    <img src="{% static 'main/img/quick-view/s2.jpg' %}" alt="">
+                                    <img src="{% static 'main/img/quick-view/s2.jpg' %}{% static 'main" alt="">
                                 </a>
                                 <a href="#modal3" data-toggle="tab" role="tab">
                                     <img src="{% static 'main/img/quick-view/s3.jpg' %}" alt="">
@@ -464,7 +312,7 @@
                             <div class="qwick-view-content">
                                 <h3>Dog Calcium Food</h3>
                                 <div class="product-price">
-                                    <span>19.00 ₽</span>
+                                    <span>$19.00 </span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="ion-star theme-color"></i>
@@ -499,7 +347,7 @@
                                 </div>
                                 <div class="quickview-plus-minus">
                                     <div class="cart-plus-minus">
-                                        <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">
+                                        <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
                                     </div>
                                     <div class="quickview-btn-cart">
                                         <a class="btn-style" href="#">add to cart</a>
@@ -514,9 +362,9 @@
                 </div>
             </div>
         </div>
-
-
-
+		
+		
+		
 		<!-- all js here -->
         <script src="{% static 'main/js/vendor/jquery-1.12.0.min.js' %}"></script>
         <script src="{% static 'main/js/popper.js' %}"></script>
