@@ -57,35 +57,35 @@
                                         </li>
                                         <li class="mega-menu-position"><a href="shop-page.html">Contuct us</a>
                                             <ul class="mega-menu">
-
                                                 <li>
-<!--                                                    <ul>-->
-<!--                                                        <li class="mega-menu-title">Контакты</li>-->
-<!--                                                        <li><a href="shop-page.html"></a></li>-->
-<!--                                                        <li><a href="shop-page.html">Почта: </a></li>-->
-<!--                                                        <li><a href="shop-page.html">Cheese</a></li>-->
-<!--                                                        <li><a href="shop-page.html">wheat bran</a></li>-->
-<!--                                                        <li><a href="shop-page.html">Cultivation</a></li>-->
-<!--                                                    </ul>-->
+                                                    <ul>
+                                                        <li class="mega-menu-title">Контакты: <span>89034379447</span></li>
+                                                        {% for category in categories_contact %}
+                                                            <li><a href="{% url 'list_products' category.pk %}">{{ category.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+
                                                 </li>
                                                 <li>
                                                     <ul>
-                                                        <li><a href="shop-page.html"><img alt="" src="{% static 'main/img/banner/menu-img-4.jpg' %}"></a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                                        <li class="mega-menu-title">Почта: <span>someThink@mail.com</span></li>
 
-                                        <li><a href="blog-leftsidebar.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="blog.html">blog page</a>
+                                                    </ul>
+
+                                                </li>
+                                                 <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">WhatsApp: <span>89034379447</span></li>
+                                                        {% for cat_blog in categories_blog_contact %}
+                                                            <li><a href="{% url 'list_blog' cat_blog.pk %}">{{ cat_blog.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+
                                                 </li>
                                                 <li>
-                                                    <a href="blog-leftsidebar.html">blog left sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-details.html">blog details</a>
+                                                    <ul>
+                                                        <li><a href="shop-page.html"><img alt="" src="{% static 'main/img/banner/img_contact.jpg' %}"></a></li>
+                                                    </ul>
                                                 </li>
                                             </ul>
                                         </li>
@@ -146,10 +146,14 @@
         <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url({% static 'main/img/banner/baner_list_blog.png' %});">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h2>Blog Left sidebar</h2>
+                    {% for category in categories %}
+                        <h2>{{ category.name }}</h2>
+                    {% endfor %}
                     <ul>
                         <li><a href="index.html">home</a></li>
-                        <li class="active">Blog Left sidebar</li>
+<!--                        {% for category in categories %}-->
+<!--                            <li class="active">{{ category.name }}</li>-->
+<!--                        {% endfor %}-->
                     </ul>
                 </div>
             </div>

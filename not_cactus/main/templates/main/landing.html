@@ -54,36 +54,54 @@
                                             <ul class="mega-menu">
 
                                                 <li>
-<!--                                                    <ul>-->
-<!--                                                        <li class="mega-menu-title">Контакты</li>-->
-<!--                                                        <li><a href="shop-page.html"></a></li>-->
-<!--                                                        <li><a href="shop-page.html">Почта: </a></li>-->
-<!--                                                        <li><a href="shop-page.html">Cheese</a></li>-->
-<!--                                                        <li><a href="shop-page.html">wheat bran</a></li>-->
-<!--                                                        <li><a href="shop-page.html">Cultivation</a></li>-->
-<!--                                                    </ul>-->
+                                                    <ul>
+                                                        <li class="mega-menu-title">Контакты: <span>89034379447</span></li>
+                                                        {% for category in categories %}
+                                                            <li><a href="{% url 'list_products' category.pk %}">{{ category.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
                                                 </li>
                                                 <li>
                                                     <ul>
-                                                        <li><a href="shop-page.html"><img alt="" src="{% static 'main/img/banner/menu-img-4.jpg' %}"></a></li>
+                                                        <li class="mega-menu-title">Почта: <span>someThink@mail.com</span></li>
+                                                        {% for product in products %}
+                                                            {% if product.popular == True %}
+                                                                <li><a href="shop-page.html">{{ product.name }}</a></li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li class="mega-menu-title">WhatsApp: <span>89034379447</span></li>
+                                                        {% for cat_blog in blogs %}
+                                                            <li><a href="{% url 'list_blog' cat_blog.pk %}">{{ cat_blog.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li><img alt="" src="{% static 'main/img/banner/img_contact.jpg' %}"></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
 
-                                        <li><a href="blog-leftsidebar.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="blog.html">blog page</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-leftsidebar.html">blog left sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-details.html">blog details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+<!--                                        <li><a href="blog-leftsidebar.html">Blog</a>-->
+<!--                                            <ul class="submenu">-->
+<!--                                                <li>-->
+<!--                                                    <a href="blog.html">blog page</a>-->
+<!--                                                </li>-->
+<!--                                                <li>-->
+<!--                                                    <a href="blog-leftsidebar.html">blog left sidebar</a>-->
+<!--                                                </li>-->
+<!--                                                <li>-->
+<!--                                                    <a href="blog-details.html">blog details</a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
                                     </ul>
                                 </nav>
                             </div>
