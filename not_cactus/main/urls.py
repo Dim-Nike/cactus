@@ -11,6 +11,4 @@ urlpatterns = [
     path('product/<int:pk>', show_products, name='product'),
     path('list_blog/<int:pk>', show_list_blog, name='list_blog'),
     path('blog/<int:pk>', show_blog, name='blog')
-    # path('blog/', )
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
